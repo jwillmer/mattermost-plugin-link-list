@@ -1,41 +1,8 @@
-# Plugin Starter Template [![CircleCI branch](https://img.shields.io/circleci/project/github/mattermost/mattermost-plugin-starter-template/master.svg)](https://circleci.com/gh/mattermost/mattermost-plugin-starter-template)
+# [Mattermost Plugin] Link List
 
-This plugin serves as a starting point for writing a Mattermost plugin. Feel free to base your own plugin off this repository.
+This plugin will display up to 5 links in the main menu of Mattermost.
 
-To learn more about plugins, see [our plugin documentation](https://developers.mattermost.com/extend/plugins/).
-
-## Getting Started
-Use GitHub's template feature to make a copy of this repository by clicking the "Use this template" button.
-
-Alternatively shallow clone the repository matching your plugin name:
-```
-git clone --depth 1 https://github.com/mattermost/mattermost-plugin-starter-template com.example.my-plugin
-```
-
-Note that this project uses [Go modules](https://github.com/golang/go/wiki/Modules). Be sure to locate the project outside of `$GOPATH`.
-
-Edit the following files:
-1. `plugin.json` with your `id`, `name`, and `description`:
-```
-{
-    "id": "com.example.my-plugin",
-    "name": "My Plugin",
-    "description": "A plugin to enhance Mattermost."
-}
-```
-
-2. `go.mod` with your Go module path, following the `<hosting-site>/<repository>/<module>` convention:
-```
-module github.com/example/my-plugin
-```
-
-3. `.golangci.yml` with your Go module path:
-```yml
-linters-settings:
-  # [...]
-  goimports:
-    local-prefixes: github.com/example/my-plugin
-```
+## Build
 
 Build your plugin:
 ```
