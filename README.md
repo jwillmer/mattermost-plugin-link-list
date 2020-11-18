@@ -1,4 +1,4 @@
-# [Mattermost Plugin] Link List
+# Mattermost Plugin: Link List
 
 This plugin will display up to 5 links in the main menu of Mattermost.
 
