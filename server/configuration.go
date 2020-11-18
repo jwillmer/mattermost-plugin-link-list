@@ -17,7 +17,17 @@ import (
 //
 // If you add non-reference types to your configuration struct, be sure to rewrite Clone as a deep
 // copy appropriate for your types.
-type configuration struct {
+type configuration struct {  
+    Site1Title           string
+    Site1Url             string
+    Site2Title           string
+    Site2Url             string
+    Site3Title           string
+    Site3Url             string
+    Site4Title           string
+    Site4Url             string
+    Site5Title           string
+    Site5Url             string
 }
 
 // Clone shallow copies the configuration. Your implementation may require a deep copy if

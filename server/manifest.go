@@ -29,9 +29,90 @@ const manifestStr = `
     "bundle_path": "webapp/dist/main.js"
   },
   "settings_schema": {
-    "header": "",
+    "header": "The defined websites will show up in the main menu. You can define up to 5 websites.",
     "footer": "",
-    "settings": []
+    "settings": [
+      {
+        "key": "Site1Title",
+        "display_name": "Site Title 1",
+        "type": "text",
+        "help_text": "The title for the first link",
+        "placeholder": "Title 1",
+        "default": null
+      },
+      {
+        "key": "Site1Url",
+        "display_name": "Site URL 1",
+        "type": "text",
+        "help_text": "The URL for the first link",
+        "placeholder": "https://my-custom-link.tld",
+        "default": null
+      },
+      {
+        "key": "Site2Title",
+        "display_name": "Site Title 2",
+        "type": "text",
+        "help_text": "The title for the second link",
+        "placeholder": "Title 2",
+        "default": null
+      },
+      {
+        "key": "Site2Url",
+        "display_name": "Site URL 2",
+        "type": "text",
+        "help_text": "The URL for the second link",
+        "placeholder": "https://my-custom-link.tld",
+        "default": null
+      },
+      {
+        "key": "Site3Title",
+        "display_name": "Site Title 3",
+        "type": "text",
+        "help_text": "The title for the third link",
+        "placeholder": "Title 3",
+        "default": null
+      },
+      {
+        "key": "Site3Url",
+        "display_name": "Site URL 3",
+        "type": "text",
+        "help_text": "The URL for the third link",
+        "placeholder": "https://my-custom-link.tld",
+        "default": null
+      },
+      {
+        "key": "Site4Title",
+        "display_name": "Site Title 4",
+        "type": "text",
+        "help_text": "The title for the fourth link",
+        "placeholder": "Title 4",
+        "default": null
+      },
+      {
+        "key": "Site4Url",
+        "display_name": "Site URL 4",
+        "type": "text",
+        "help_text": "The URL for the fourth link",
+        "placeholder": "https://my-custom-link.tld",
+        "default": null
+      },
+      {
+        "key": "Site5Title",
+        "display_name": "Site Title 5",
+        "type": "text",
+        "help_text": "The title for the fith link",
+        "placeholder": "Title 5",
+        "default": null
+      },
+      {
+        "key": "Site5Url",
+        "display_name": "Site URL 5",
+        "type": "text",
+        "help_text": "The URL for the fith link",
+        "placeholder": "https://my-custom-link.tld",
+        "default": null
+      }
+    ]
   }
 }
 `
