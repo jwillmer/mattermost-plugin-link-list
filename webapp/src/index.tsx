@@ -15,7 +15,7 @@ import type {PluginSettings} from 'types/config';
 // eslint-disable-next-line import/no-unresolved
 import type {PluginRegistry} from 'types/mattermost-webapp';
 
-import {MainMenuMobileIcon} from './components/icons';
+import {MainMenuMobileIcon} from 'components/icons';
 
 export const isNullOrWhitespace = (input:string) => {
     return !input || !input.trim();
