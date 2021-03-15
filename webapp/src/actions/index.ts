@@ -1,16 +1,26 @@
+import {AnyAction, Dispatch} from 'redux';
+
+import {GetStateFunc} from 'mattermost-redux/types/actions';
 import {Client4} from 'mattermost-redux/client';
 import {ClientError} from 'mattermost-redux/client/client4';
 import {getConfig} from 'mattermost-redux/selectors/entities/general';
+
+import {GlobalState} from 'mattermost-redux/types/store';
+import {Options} from 'mattermost-redux/types/client4';
+
+import type {PluginSettings} from 'types/config';
+import type {WebSocketMessageSettingsUpdated} from 'types/websocket';
+
 import {id as pluginId} from 'manifest';
 import ActionTypes from 'action_types';
 
-export const doFetch = async (url, options) => {
+const doFetch = async (url:string, options:Options) => {
     const {data} = await doFetchWithResponse(url, options);
 
     return data;
 };
 
-export const doFetchWithResponse = async (url, options = {}) => {
+const doFetchWithResponse = async (url:string, options = {}) => {
     const response = await fetch(url, Client4.getOptions(options));
 
     let data;
@@ -32,7 +42,7 @@ export const doFetchWithResponse = async (url, options = {}) => {
     });
 };
 
-export const getPluginServerRoute = (state) => {
+const getPluginServerRoute = (state: GlobalState) => {
     const config = getConfig(state);
 
     let basePath = '';
@@ -48,11 +58,11 @@ export const getPluginServerRoute = (state) => {
 };
 
 export function getSettings() {
-    return async (dispatch, getState) => {
+    return async (dispatch: Dispatch<AnyAction>, getState: GetStateFunc): Promise<PluginSettings> => {
         let data;
         const baseUrl = getPluginServerRoute(getState());
         try {
-            data = await doFetch(`${baseUrl}/api/v2/settingsinfo`, {
+            data = await doFetch(`${baseUrl}/api/v1/settings`, {
                 method: 'get',
             });
 
@@ -61,9 +71,24 @@ export function getSettings() {
                 data,
             });
         } catch (error) {
-            return {error};
+            console.error(error); //eslint-disable-line no-console
         }
 
         return data;
+    };
+}
+
+export function handleWebsocketSettingsUpdated(getState: GetStateFunc, dispatch: Dispatch) {
+    return (msg: WebSocketMessageSettingsUpdated): void => {
+        if (!msg.data) {
+            return;
+        }
+
+        const data = msg.data;
+
+        dispatch({
+            type: ActionTypes.RECEIVED_PLUGIN_SETTINGS,
+            data,
+        });
     };
 }
