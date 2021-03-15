@@ -3,14 +3,15 @@ package main
 import (
 	"encoding/json"
 	"net/http"
-	"sync"
 	"strconv"
-	"github.com/pkg/errors"
+	"sync"
+
 	"github.com/mattermost/mattermost-server/v5/plugin"
+	"github.com/pkg/errors"
 )
 
 const (
-	routeAPISettingsInfo                        = "/api/v2/settingsinfo"
+	routeAPISettings = "/api/v1/settings"
 )
 
 // Plugin implements the interface expected by the Mattermost server to communicate between the server and plugin processes.
@@ -36,27 +37,26 @@ func (p *Plugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Req
 func (p *Plugin) serveHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Request) (int, error) {
 	path := r.URL.Path
 
-	switch path {
-		case routeAPISettingsInfo:
-          return p.httpGetSettingsInfo(w, r)
-		}
+	if path == routeAPISettings {
+		return p.httpGetSettings(w, r)
+	}
 
 	return respondErr(w, http.StatusNotFound, errors.New("not found"))
 }
 
-func (p *Plugin) httpGetSettingsInfo(w http.ResponseWriter, r *http.Request) (int, error) {
+func (p *Plugin) httpGetSettings(w http.ResponseWriter, r *http.Request) (int, error) {
 	if r.Method != http.MethodGet {
 		return respondErr(w, http.StatusMethodNotAllowed,
 			errors.New("method "+r.Method+" is not allowed, must be GET"))
 	}
 
-	mattermostUserId := r.Header.Get("Mattermost-User-Id")
-	if mattermostUserId == "" {
+	mattermostUserID := r.Header.Get("Mattermost-User-Id")
+	if mattermostUserID == "" {
 		return respondErr(w, http.StatusUnauthorized,
 			errors.New("not authorized"))
 	}
 
-	return respondJSON(w, p.getConfiguration());
+	return respondJSON(w, p.getConfiguration())
 }
 
 func respondErr(w http.ResponseWriter, code int, err error) (int, error) {

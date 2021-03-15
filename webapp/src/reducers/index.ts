@@ -1,8 +1,8 @@
-import {combineReducers} from 'redux';
+import {AnyAction, combineReducers} from 'redux';
 
 import ActionTypes from 'action_types';
 
-function pluginSettings(state = null, action:any ) {
+function pluginSettings(state = null, action: AnyAction) {
     switch (action.type) {
     case ActionTypes.RECEIVED_PLUGIN_SETTINGS:
         return action.data;

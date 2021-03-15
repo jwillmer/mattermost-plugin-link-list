@@ -14,7 +14,10 @@ const manifestStr = `
 {
   "id": "de.jwillmer.plugin-link-list",
   "name": "Link List Plugin",
-  "description": "This plugin will display links to other websites in Mattermost.",
+  "description": "This plugin will display links to other websites in the Mattermost main menu.",
+  "homepage_url": "https://github.com/jwillmer/mattermost-plugin-link-list",
+  "support_url": "https://github.com/jwillmer/mattermost-plugin-link-list/issues",
+  "release_notes_url": "https://github.com/jwillmer/mattermost-plugin-link-list/releases/tag/0.1.0",
   "version": "0.1.0",
   "min_server_version": "5.12.0",
   "server": {

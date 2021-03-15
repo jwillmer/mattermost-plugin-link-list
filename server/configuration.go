@@ -1,8 +1,10 @@
 package main
 
 import (
+	"log"
 	"reflect"
 
+	"github.com/mattermost/mattermost-server/v5/model"
 	"github.com/pkg/errors"
 )
 
@@ -17,17 +19,17 @@ import (
 //
 // If you add non-reference types to your configuration struct, be sure to rewrite Clone as a deep
 // copy appropriate for your types.
-type configuration struct {  
-    Site1Title           string
-    Site1Url             string
-    Site2Title           string
-    Site2Url             string
-    Site3Title           string
-    Site3Url             string
-    Site4Title           string
-    Site4Url             string
-    Site5Title           string
-    Site5Url             string
+type configuration struct {
+	Site1Title string
+	Site1Url   string
+	Site2Title string
+	Site2Url   string
+	Site3Title string
+	Site3Url   string
+	Site4Title string
+	Site4Url   string
+	Site5Title string
+	Site5Url   string
 }
 
 // Clone shallow copies the configuration. Your implementation may require a deep copy if
@@ -89,5 +91,23 @@ func (p *Plugin) OnConfigurationChange() error {
 
 	p.setConfiguration(configuration)
 
+	log.Printf("configuration.asMap(): %#+v\n", configuration.asMap())
+	p.API.PublishWebSocketEvent("settings_updated", configuration.asMap(), &model.WebsocketBroadcast{})
+
 	return nil
+}
+
+func (c *configuration) asMap() map[string]interface{} {
+	return map[string]interface{}{
+		"Site1Title": c.Site1Title,
+		"Site1Url":   c.Site1Url,
+		"Site2Title": c.Site2Title,
+		"Site2Url":   c.Site2Url,
+		"Site3Title": c.Site3Title,
+		"Site3Url":   c.Site3Url,
+		"Site4Title": c.Site4Title,
+		"Site4Url":   c.Site4Url,
+		"Site5Title": c.Site5Title,
+		"Site5Url":   c.Site5Url,
+	}
 }
