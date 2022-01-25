@@ -103,7 +103,7 @@ const manifestStr = `
         "key": "Site5Title",
         "display_name": "Site Title 5",
         "type": "text",
-        "help_text": "The title for the fith link",
+        "help_text": "The title for the fifth link",
         "placeholder": "Title 5",
         "default": null
       },
@@ -111,7 +111,7 @@ const manifestStr = `
         "key": "Site5Url",
         "display_name": "Site URL 5",
         "type": "text",
-        "help_text": "The URL for the fith link",
+        "help_text": "The URL for the fifth link",
         "placeholder": "https://my-custom-link.tld",
         "default": null
       }

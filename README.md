@@ -1,6 +1,6 @@
 # Mattermost Plugin: Link List
 
-This plugin will display up to 5 links in the main menu of Mattermost.
+This plugin will display up to 5 links in the main menu of Mattermost. Links need to be URLs.
 
 To enable plugin uploads, manually set `PluginSettings > EnableUploads` to `true` in your `config.json` file and restart your server. You can disable plugin uploads at any time without affecting previously uploaded plugins.
 
